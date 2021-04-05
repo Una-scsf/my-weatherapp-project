@@ -31,7 +31,7 @@ a {
   font-weight: bold;
 }
 .form-inline {
-  padding: 0px 10px;
+  padding: 10px 10px 0px 10px;
 }
 
 .sr-only {
@@ -55,4 +55,8 @@ a {
 }
 .units {
   vertical-align: super;
+}
+
+p {
+  padding: 20px 0px;
 }
