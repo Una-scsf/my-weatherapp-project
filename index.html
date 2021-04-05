@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Una's Weather App Week 8</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        What's the weather like today?
+        <span class="sunshine">🌤 </span>
+      </h1>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Dublin <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">London</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Paris</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Lisbon</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" id="search-form">
+          <div class="form-group mb-2">
+          <input
+            class="sr-only"
+            type="search"
+            placeholder="Enter city here..."
+            aria-label="Search"
+            id="city-search"
+          />
+          <button class="btn btn-outline-success my-2" type="submit" id="search-button">
+            Search
+          </button>
+          </div>
+        </form>
+        </nav>
+      </nav>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <ul>
+            <li>
+               <span class="header" id="current-city">Dublin</span> 
+            </li>
+            <li>
+              <span class="subheader1" id="dayTime">Saturday 13:06</span>
+            </li>
+            <li>
+              <span class="subheader2" id="temperature">19</span>
+              <span class="units" id="celsius">°C </span>
+            </li>
+            <li>
+              <span class="subheader2" id="description">Rainy</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col">
+          Sun <br />
+          12° <br />🌥
+        </div>
+        <div class="col">
+          Mon <br />
+          11° <br />🌦
+        </div>
+        <div class="col">
+          Tues <br />
+          14° <br />☀️
+        </div>
+        <div class="col">
+          Weds <br />
+          11° <br />🌥
+        </div>
+        <div class="col">
+          Thurs <br />
+          9° <br />🌧
+        </div>
+      </div>
+    </div>
+    <script>
+
+let now = new Date();
+
+let dayHeader = document.querySelector("#dayTime");
+
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+let minutes = now.getMinutes();
+let hours = now.getHours();
+
+dayHeader.innerHTML = day + " " + hours + ":" + minutes;
+
+
+function updateCity(event) {
+  let city = document.querySelector("#city-search").value;
+  searchCity(city);
+  alert("Lets see what the weather is like in " + city+ "!");
+  event.preventDefault();
+}
+
+let currentCity = document.querySelector("#search-form");
+currentCity.addEventListener("submit", updateCity);
+
+
+function displayWeatherCondition(response){
+document.querySelector("#current-city").innerHTML = response.data.name;
+document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
+document.querySelector("#description").innerHTML = response.data.weather[0].main;
+}
+
+function searchCity(city){
+  let apiKey = "62e4e10b8b4898d14bb064dd2b5f756f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
+
+    </script>
+  </body>
+</html>

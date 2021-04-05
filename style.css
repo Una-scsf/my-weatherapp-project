@@ -1,0 +1,58 @@
+.container {
+  max-width: 75%;
+  margin: 30px auto;
+  padding: 20px 20px;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+
+.sr-only {
+  font-weight: 900;
+}
+.sunshine {
+  position: relative;
+}
+.header {
+  font-size: 50px;
+  font-weight: bold;
+}
+.form-inline {
+  padding: 0px 10px;
+}
+
+.sr-only {
+  font-weight: 100;
+  padding: 4px;
+}
+.btn-outline-success:hover {
+  background-color: #fed6e3;
+  border: #fbc2eb;
+}
+.btn-outline-success {
+  color: #df55b8;
+  border-color: #df55b8;
+}
+.subheader1 {
+  font-size: 35px;
+}
+
+.subheader2 {
+  font-size: 25px;
+}
+.units {
+  vertical-align: super;
+}
